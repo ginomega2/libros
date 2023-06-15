@@ -25,13 +25,15 @@
     <div class="card">
         <div class="card-body">
             <div th:switch="${books}" class="container">
-<!--                <a th:href="@{/edit/{id}(id=${book.id})">-->
-
+                <a  th:href="@{/rest/update}">
+                    <i class="fas fa-solid fa-plus">NEW</i>
+                </a>
                 <h2 th:case="null">NO HAY REGISTROS</h2>
                 <div th:case="*">
-                    <table>
-                        <thead>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
                         <tr>
+                            <th>id</th>
                             <th>NOMBRE</th>
                             <th>DESCRIPCION</th>
                             <th>PRECIO</th>
@@ -44,20 +46,18 @@
                         <tr  th:each="book: ${books}">
 <!--                            ¿Qué es tr td y th en HTML?-->
 <!--                            El elemento básico de definición de tabla es <TABLE> </TABLE> y en su interior se disponen los sub elementos <TR> para definir una fila (Row) <TH> para definir una cabecera (Header) <TD> para definir una celda de datos (Data).-->
+                            <td th:text="${book.id}"></td>
                             <td th:text="${book.name}"></td>
                             <td th:text="${book.desciption}"></td>
                             <td th:text="${book.price}"></td>
                             <td>
-                                <a  th:href="@{/edit/{id} (id=${book.id}) }">
-
-                                    <i class="fas fa-solid fa-edit">edit</i>
-<!--                                    <i class="fas fa-solid fa-plus">edit</i>-->
+                                <a  th:href="@{/rest/edit/{id} (id=${book.id}) }">
+                                    <i class="fas fa-solid fa-edit">Edit</i>
                                 </a>
                             </td>
                             <td>
-<!--                                <a th:href="@{/delete/{id}(id=${book.id})">-->
-                                <a  th:href="@{/delete/{id} (id=${book.id}) }">
-                                    <i class="fas fa-solid fa-trash">delete</i>
+                                <a  th:href="@{/rest/delete/{id} (id=${book.id}) }">
+                                    <i class="fas fa-solid fa-trash">Delete</i>
                                 </a>
                             </td>
 
