@@ -1,0 +1,76 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+
+<head>
+
+    <title>VER TODOS LOS LIBROS</title>
+
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+<!--    <meta http-equiv="x-ua-compatible" content="">-->
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" />
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+
+
+
+</head>
+<body>
+
+<div class="container">
+    <div class="card">
+        <div class="card-body">
+            <div th:switch="${books}" class="container">
+<!--                <a th:href="@{/edit/{id}(id=${book.id})">-->
+
+                <h2 th:case="null">NO HAY REGISTROS</h2>
+                <div th:case="*">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>NOMBRE</th>
+                            <th>DESCRIPCION</th>
+                            <th>PRECIO</th>
+                            <th>EDIT</th>
+                            <th>DELETE</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr  th:each="book: ${books}">
+<!--                            ¿Qué es tr td y th en HTML?-->
+<!--                            El elemento básico de definición de tabla es <TABLE> </TABLE> y en su interior se disponen los sub elementos <TR> para definir una fila (Row) <TH> para definir una cabecera (Header) <TD> para definir una celda de datos (Data).-->
+                            <td th:text="${book.name}"></td>
+                            <td th:text="${book.desciption}"></td>
+                            <td th:text="${book.price}"></td>
+                            <td>
+                                <a  th:href="@{/edit/{id} (id=${book.id}) }">
+
+                                    <i class="fas fa-solid fa-edit">edit</i>
+<!--                                    <i class="fas fa-solid fa-plus">edit</i>-->
+                                </a>
+                            </td>
+                            <td>
+<!--                                <a th:href="@{/delete/{id}(id=${book.id})">-->
+                                <a  th:href="@{/delete/{id} (id=${book.id}) }">
+                                    <i class="fas fa-solid fa-trash">delete</i>
+                                </a>
+                            </td>
+
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
