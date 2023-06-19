@@ -23,7 +23,7 @@ public class BookController {
     @GetMapping("/index")            //************    http://localhost:8066/rest/index
     public String getAllBooks(Model model){
         List<Book> books = bookService.findAllBooks();
-        model.addAttribute("books",books);
+        model.addAttribute("books",books );
         return "index";
     }
 
